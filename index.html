@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Construyendo Reino</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #f4c56a;
+      --gold-soft: #ffe3a3;
+      --dark: #0b0a08;
+      --gray: #5f5447;
+      --text: #f4efe7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(244,197,106,.25), transparent 35%),
+        linear-gradient(135deg, #080705 0%, #15110c 45%, #070604 100%);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      padding: 32px 18px;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: auto;
+      border: 1px solid rgba(244,197,106,.18);
+      background: rgba(0,0,0,.35);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 0 80px rgba(0,0,0,.6);
+    }
+
+    .top {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 32px;
+    }
+
+    .label {
+      color: var(--gold);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 8vw, 104px);
+      line-height: .9;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    .script {
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: clamp(28px, 5vw, 58px);
+      margin-top: -4px;
+    }
+
+    .intro {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #d9d0c2;
+      max-width: 520px;
+      margin-top: 22px;
+    }
+
+    .counter {
+      text-align: right;
+    }
+
+    .counter small {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #b9ab96;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .number {
+      font-size: clamp(58px, 9vw, 116px);
+      font-weight: 800;
+      color: var(--gold);
+      line-height: .9;
+      text-shadow: 0 0 24px rgba(244,197,106,.45);
+    }
+
+    .counter span {
+      font-size: 28px;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+    }
+
+    .bar-wrap {
+      margin: 22px 0 34px;
+      background: rgba(255,255,255,.09);
+      border-radius: 99px;
+      height: 22px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+      border-radius: 99px;
+      box-shadow: 0 0 26px rgba(244,197,106,.8);
+      transition: width 1.2s ease;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: #cfc3b1;
+      margin-bottom: 26px;
+      font-size: 15px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(24, 1fr);
+      gap: 12px;
+      padding: 26px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top, rgba(244,197,106,.10), transparent 45%),
+        rgba(0,0,0,.28);
+      border: 1px solid rgba(244,197,106,.12);
+    }
+
+    .chair {
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      color: var(--gray);
+      opacity: .6;
+      filter: grayscale(1);
+      transform: scale(.96);
+    }
+
+    .chair.on {
+      color: var(--gold-soft);
+      opacity: 1;
+      filter: none;
+      text-shadow:
+        0 0 6px var(--gold),
+        0 0 14px var(--gold),
+        0 0 28px rgba(244,197,106,.9);
+      transform: scale(1.05);
+    }
+
+    .footer {
+      margin-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #cdbf9e;
+      font-size: 15px;
+      border-top: 1px solid rgba(244,197,106,.14);
+      padding-top: 22px;
+    }
+
+    .footer strong {
+      color: var(--gold);
+    }
+
+    @media (max-width: 800px) {
+      .page {
+        padding: 24px 16px;
+        border-radius: 20px;
+      }
+
+      .top {
+        grid-template-columns: 1fr;
+      }
+
+      .counter {
+        text-align: left;
+      }
+
+      .grid {
+        grid-template-columns: repeat(10, 1fr);
+        gap: 8px;
+        padding: 16px;
+      }
+
+      .chair {
+        font-size: 20px;
+      }
+
+      .footer,
+      .stats {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="top">
+      <div>
+        <div class="label">Proyecto de ofrenda</div>
+        <h1>Construyendo Reino</h1>
+        <div class="script">hay lugar para uno más</div>
+        <p class="intro">
+          Juntos estamos preparando más lugar para lo que Dios está haciendo.
+          Cada silla representa un espacio preparado para una vida.
+        </p>
+      </div>
+
+      <div class="counter">
+        <small>Nuestro objetivo</small>
+        <div class="number" id="goal">600</div>
+        <span>sillas</span>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div><strong id="currentText">0</strong> sillas ofrendadas</div>
+      <div><strong id="percentText">0%</strong> completado</div>
+      <div>Faltan <strong id="leftText">600</strong> sillas</div>
+    </div>
+
+    <div class="bar-wrap">
+      <div class="bar" id="bar"></div>
+    </div>
+
+    <section class="grid" id="chairGrid"></section>
+
+    <section class="footer">
+      <div><strong>Cada luz encendida</strong> representa una silla conseguida.</div>
+      <div>Gracias por ser parte de esta historia.</div>
+    </section>
+  </main>
+
+  <script>
+    const META = 600;
+    const CONSEGUIDAS = 0; // CAMBIA SOLO ESTE NÚMERO
+
+    const grid = document.getElementById("chairGrid");
+    const percent = Math.round((CONSEGUIDAS / META) * 100);
+
+    document.getElementById("goal").textContent = META;
+    document.getElementById("currentText").textContent = CONSEGUIDAS;
+    document.getElementById("percentText").textContent = percent + "%";
+    document.getElementById("leftText").textContent = META - CONSEGUIDAS;
+    document.getElementById("bar").style.width = percent + "%";
+
+    for (let i = 1; i <= META; i++) {
+      const chair = document.createElement("div");
+      chair.className = "chair" + (i <= CONSEGUIDAS ? " on" : "");
+      chair.innerHTML = "▱";
+      grid.appendChild(chair);
+    }
+  </script>
+</body>
+</html>
